@@ -1,5 +1,11 @@
 body {
-    font-family: "Menlo", "Meslo LG", monospace;
-    color: #DFE3E3;
-    background-color: #201c1c;
-  }
+  font-family: "Menlo", "Meslo LG", monospace;
+  font-size: 2em;
+  color: #DFE3E3;
+  background-color: #201c1c;
+  text-align: center;
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
