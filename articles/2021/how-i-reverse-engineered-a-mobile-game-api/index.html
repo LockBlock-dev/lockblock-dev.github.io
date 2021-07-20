@@ -24,41 +24,7 @@
             </header>
 
             <div class="content">
-                <h2 id="how-does-this-game-work..."><a href="#how-does-this-game-work...">How does this game work...</a></h2>
-                <p>I was playing <a href="https://play.google.com/store/apps/details?id=com.horagames.cryptominer" target="_blank">Crypto Idle Miner</a>, a mobile game about crypto currencies, when this question went through my mind. And I think I'm not the only one who has thought of this using an app.</p>
-                <p>It's time to get my hands dirty.</p>
-                <h2 id="yes-but-how"><a href="#yes-but-how">Yes but how</a></h2>
-                <p>That's a good question. How on earth can I spy on this bad boy... I'm not on a web browser so no "Inspect Element".</p>
-                <p>My plan was simple: doing a <a href="https://en.wikipedia.org/wiki/Man-in-the-middle_attack" target="_blank">Man-in-the-middle attack</a>, also called MITM, to see the requests between the app and the game server. So, like any human on this planet, I went on google and casually researched: <i>"MITM on Android apps"</i>. After looking at the results I found the holy grail, <a href="https://mitmproxy.org" target="_blank">mitmproxy</a>.</p>
-                <h2 id="mitmproxy"><a href="#mitmproxy">mitmproxy</a></h2>
-                <p>This tool makes the whole process of a MITM attack very simple by providing you with the "server" side app (on your PC) and the certificate for the device to be spied on. I downloaded the binaries, connected my phone to my PC, downloaded and installed the certificate and finally started the game.</p>
-                <button class="imgLink"><img src="img/no_internet_error_cim.png" alt="nice error"/></button>
-                <p>No internet? Why, I'm connected to the WIFI it should work... Once again, I searched on google: <i>"mitmproxy no internet on apps"</i> and realized that it couldn't work. In fact, since Android 7, applications don't trust user certificates for security concerns, I guess. I had to find a workaround. First I looked how can I add my very safe official certificate to the game and found <a href="https://github.com/shroudedcode/apk-mitm" target="_blank">apk-mitm</a>.</p>
-                <h2 id="apk-mitm"><a href="#apk-mitm">apk-mitm</a></h2>
-                <p>This script attempts to disable <a href="https://owasp.org/www-community/controls/Certificate_and_Public_Key_Pinning#what-is-pinning" target="_blank">certificate pinning</a> and tries to allow user certificates by patching the apk code. Then it rebuilds it and signs it. Simple.</p>
-                <button class="imgLink"><img src="img/apk_mitm_example.png" alt="apk mitm example"/></button>
-                <p>I just needed the game apk: for that I tried to get the apk from the Play Store and after from my phone. Both apk were patched but I couldn't install them on my phone... Back to square one. I went back on mitmproxy documentation and found at the bottom the <a href="https://docs.mitmproxy.org/stable/howto-install-system-trusted-ca-android" target="_blank">solution</a>.</p>
-                <h2 id="android-studio"><a href="#android-studio">Android Studio</a></h2>
-                <p>Who would have thought I would need Android tools to get around Android's own security. I followed mitmproxy guide, installed Android Studio, created a android virtual device (AVD) with the naivety to think that I will be able to use the Google Play Store.</p>
-                <button class="imgLink"><img src="img/android_studio_apis.png" alt="google play apis"/></button>
-                <p>In fact, Google are smart, AVDs with the Google APIs are protected so that I cannot write my certificate in the system. After learning that I recreated another AVD without Google APIs this time. Now that I have an Android with my very safe official certificate in its system, I have to install the game but without the Play Store. For this I downloaded and used <a href="https://auroraoss.com" target="_blank">Aurora Store</a>. It is a great alternative to Google Play in my opinion. Finally, I can now spy on this game and expose all its secrets.</p>
-                <h2 id="acting-as-a-3-letter-agency"><a href="#acting-as-a-3-letter-agency">Acting as a 3 letter agency</a></h2>
-                <p>Now that I can see everything my phone does with the internet in clear just like a 3 letter agency does, let's dive into it.</p>
-                <button class="imgLink"><img src="img/mitm_preview.png" alt="mitm preview"/></button>
-                <p>Simply use the application a bit and you will see many requests to the game server. There are unwanted requests from other services but let's focus on the main topic.</p>
-                <p>Looking at the URLs of these requests, it looks like we found a secret undocumented API known only by the developers: <code>https://terra.horahub.com/api</code>. It's time to try everything I can do in the game and write down all the endpoints.</p>
-                <p>At the time I write, I found about twenty endpoints, but I saw on Twitter that the developers were going to update their API.</p>
-                <h2 id="the-end-of-the-story"><a href="#the-end-of-the-story">The end of the story</a></h2>
-                <p>So, how does this game work? This game uses a private <a href="https://www.redhat.com/en/topics/api/what-is-a-rest-api" target="_blank">REST API</a>. When you start the game, it requests this API to get the common variables (prices, objects, ...), the infos about researches, buildings, ... and it requests your savegame. From time to time, the game saves your progress and sends it to the server. And there are also endpoints for some functions in the game (achievements, claiming a promo code, ...)</p>
-                <p>After writing all endpoints, I worked on a JavaScrypt library to interact with this specific API and published it as a NPM package. If you are interested, <a href="https://github.com/LockBlock-dev/crypto-idle-miner.js" target="_blank">here is the link</a>.</p>
-                <h2 id="tl;dr"><a href="#tl;dr">tl;dr</a></h2>
-                <ul>
-                    <li><a href="https://mitmproxy.org" target="_blank">mitmproxy</a> is a nice tool for MITM attacks</li>
-                    <li>Android tools can get around Android's own security</li>
-                    <li>Google are smart</li>
-                    <li>A phone makes many (too) requests</li>
-                    <li>This game works with a private REST API</li>
-                </ul>
+                <p>Coming soon!</p>
             </div>
         </article>
 
