@@ -14,19 +14,29 @@
         <link rel="stylesheet" href="style.css">
         <title>Come back later!</title>
     </head>
-    <body>
-        <div class="main">
-            <p>Nothing to see here for now, come back later!</p>
-        </div>
+    <body class="container">
+        <article style="padding-bottom: 77%;">
+            <header>
+                <h2>Articles</h2>
+                <ul style="list-style: none;">
+                    <li class="main-list">
+                        <div class="date">
+                            <time datetime="2021-07-20T14:55:37.296Z">2021-07-20</time>
+                        </div>
+                        <a href="articles/2021/how-i-reverse-engineered-a-mobile-game-api">How I reverse engineered a mobile game api</a>
+                    </li>
+                </ul>
+            </header>
+        </article>
 
         <footer class="footer">
             <p id="copyright">Copyright © LockBlock-dev</p>
-            <p>If you like my content, consider <a style="color: #FFDD00" target="_blank" href="https://ko-fi.com/lockblock">buying me a coffee ☕️</a></p>
+            <p>If you like my content, consider <a style="color: #FFDD00" target="_blank" href="https://ko-fi.com/lockblock">buying me a coffee </a>☕️</p>
         </footer>
 
         <script>
             var date = new Date()
-            document.getElementById("copyright").innerHTML = `Copyright © ${date.getFullYear()} LockBlock-dev`
+            document.getElementById("copyright").innerHTML = `Copyright © 2021 LockBlock-dev`
         </script>
     </body>
 </html>
