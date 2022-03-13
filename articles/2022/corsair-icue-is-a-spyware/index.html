@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+        <meta property="og:type" content="article" />
+        <meta property="og:site_name" content="LockBlock-dev" />
+        <meta property="og:title" content="Corsair iCUE is a spyware" />
+        <meta property="og:descritpion" content="It's creepy" />
+        <meta
+            property="og:url"
+            content="https://lockblock-dev.github.io/articles/corsair-icue-is-a-spyware"
+        />
+        <meta property="og:locale" content="en_US" />
+        <meta property="article:author" content="LockBlock-dev" />
+
+        <link rel="stylesheet" href="../../../style.css" />
+        <title>Corsair iCUE is a spyware</title>
+    </head>
+    <body class="container">
+        <nav class="site-nav">
+            <ul>
+                <li>
+                    <a href="/"><img class="icon" src="../../../img/icons/home.png" /></a>
+                </li>
+                <li class="li-logo">
+                    <a href="/"
+                        ><img
+                            class="logo"
+                            src="../../../img/icons/L.png"
+                            alt="LockBlock-dev"
+                            title="LockBlock-dev"
+                    /></a>
+                </li>
+                <li>
+                    <a href="https://discord.com/users/810163923391217725" target="_blank"
+                        ><img
+                            class="icon"
+                            src="../../../img/icons/discord.png"
+                            title="LockBlock 📌#6465"
+                    /></a>
+                </li>
+                <li>
+                    <a href="https://github.com/LockBlock-dev" target="_blank"
+                        ><img
+                            class="icon"
+                            src="../../../img/icons/github.png"
+                            title="LockBlock-dev"
+                    /></a>
+                </li>
+            </ul>
+        </nav>
+
+        <article>
+            <header>
+                <h1>Corsair iCUE is a spyware</h1>
+                <div class="date">
+                    <time datetime="2022-03-13T17:05:24.048Z">2022-03-13</time>
+                </div>
+            </header>
+
+            <div class="content">
+                <h2 id="why"><a href="#why">Why</a></h2>
+                <p>Why not?</p>
+                <h2 id="how"><a href="#how">How</a></h2>
+                <p>
+                    Please refer to my
+                    <a href="../../2021/how-i-reverse-engineered-a-mobile-game-api" target="_blank"
+                        >other article</a
+                    >
+                    where I explain how to setup a MITM attack.
+                </p>
+                <h2 id="privacy-policy"><a href="#privacy-policy">Privacy Policy</a></h2>
+                <p>
+                    From
+                    <a href="https://www.corsair.com/us/en/privacy-policy" target="_blank"
+                        >Corsair Privacy Policy</a
+                    >:<br />Personal information that Corsair collects: Name, email, address, city,
+                    state and zip code, country, phone number, details of purchase(s), credit card
+                    information, [...] IP address, device type, unique device identification
+                    numbers, browser, location and other technical information [...], how your
+                    device has interacted with our website, pages accessed and links clicked.
+                </p>
+                <h2 id="installation"><a href="#installation">Installation</a></h2>
+                <p>
+                    So I spinned up my best Windows Virtual Machine and installed the tools. In the
+                    picture below you can see all the requests the installer made. The installer
+                    shows a YouTube video but I removed thoses requests since it's not the topic
+                    here.
+                </p>
+                <p>
+                    First, we can see that iCUE installers tries and fails multiple times to get
+                    datacollection/config.json.. weird. Then it requests the data about the YouTube
+                    videos it shows when installing. Not interesting. But the 4th request is
+                    different. In fact,
+                    <a href="https://www.ipify.org" target="_blank">ipify.org</a> is an API to get
+                    your public IP address. This is clearly a spyware behavior.
+                </p>
+                <p>
+                    Then, the iCUE installer requests more data that it needs: game sdk effects,
+                    videos and last version. And finally, we can see that it requests
+                    <a href="https://mixpanel.com" target="_blank">mixpanel.com</a>: a well known
+                    tracker.
+                </p>
+                <button class="imgLink">
+                    <img src="./img/mitm_install.png" alt="Corsair installation mitm results" />
+                </button>
+                <h2 id="mixpanel"><a href="#mixpanel">Mixpanel</a></h2>
+                <p>
+                    iCUE sends base64 encoded data to mixpanel. After decoding it, we can see it
+                    sends <b>everything</b>. Every info about your PC, iCUE config, and your ip
+                    address requested earlier. You can see a detailed view
+                    <a href="./data_clean.json" target="_blank">here</a> (I removed all data).
+                </p>
+                <h2 id="usage"><a href="#usage">Usage</a></h2>
+                <p>When using iCUE, the same tracking is used.</p>
+                <button class="imgLink">
+                    <img src="./img/mitm_usage.png" alt="Corsair usage mitm results" />
+                </button>
+                <h2 id="i'm-scared"><a href="#i'm-scared">I'm scared</a></h2>
+                <p>Me too.</p>
+                <h2 id="final-words"><a href="#final-words">Final words</a></h2>
+                <p>
+                    Seeing that Corsair is doing such shameless tracking really pisses me off. If
+                    that's the case for you too, you should get an alternativ to iCUE:<br />-
+                    <a href="https://github.com/ckb-next/ckb-next" target="_blank">ckb-next</a>
+                    (Linux only)<br />- <a href="https://openrgb.org" target="_blank">OpenRGB</a
+                    ><br />
+                </p>
+                <h2 id="tl;dr"><a href="#tl;dr">tl;dr</a></h2>
+                <ul>
+                    <li>Corsair iCUE is a spyware</li>
+                    <li>Do not use it</li>
+                </ul>
+            </div>
+        </article>
+
+        <footer class="footer">
+            <p id="copyright">Copyright © LockBlock-dev</p>
+            <p>
+                If you like my content, consider
+                <a style="color: #ffdd00" target="_blank" href="https://ko-fi.com/lockblock"
+                    >buying me a coffee </a
+                >☕️
+            </p>
+        </footer>
+
+        <script>
+            var date = new Date();
+            document.getElementById("copyright").innerHTML = `Copyright © 2022 LockBlock-dev`;
+        </script>
+    </body>
+</html>
