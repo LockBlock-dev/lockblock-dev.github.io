@@ -2,7 +2,6 @@
 <html lang="en">
     <head>
         <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content="LockBlock-dev" />
         <meta property="og:title" content="Don't click" />
@@ -11,50 +10,66 @@
         <meta property="og:locale" content="en_US" />
         <meta property="article:author" content="LockBlock-dev" />
 
-        <link rel="stylesheet" href="style.css" />
+        <link rel="stylesheet" href="assets/styles/style.css" />
+        <link rel="stylesheet" href="assets/styles/main.css " />
+
         <title>LockBlock-dev</title>
     </head>
-    <body class="container">
-        <nav class="site-nav">
+    <body>
+        <nav>
             <ul>
+                <!-- TODO:
+                    SVGs
+                    orange on hover? -->
                 <li>
-                    <a href="/"><img class="icon" src="img/icons/home.png" /></a>
-                </li>
-                <li class="li-logo">
-                    <a href="#"><img class="logo" src="img/icons/L.png" alt="LockBlock-dev" title="LockBlock-dev" /></a>
+                    <a href="/"><img class="icon" src="assets/img/icons/home.png" /></a>
                 </li>
                 <li>
-                    <a href="https://discord.com/users/810163923391217725" target="_blank"
-                        ><img class="icon" src="img/icons/discord.png" title="LockBlock 📌#6465"
+                    <a href="https://discord.com/users/926900384000249867" target="_blank"
+                        ><img
+                            class="icon"
+                            src="assets/img/icons/discord.png"
+                            title="LockBlock 📌#8107"
                     /></a>
                 </li>
                 <li>
                     <a href="https://github.com/LockBlock-dev" target="_blank"
-                        ><img class="icon" src="img/icons/github.png" title="LockBlock-dev"
+                        ><img class="icon" src="assets/img/icons/github.png" title="LockBlock-dev"
                     /></a>
                 </li>
             </ul>
         </nav>
 
-        <div class="main">
-            <h1>LOCKBLOCK<i style="color: #fca311">.DEV</i></h1>
-        </div>
+        <main>
+            <h1>LOCKBLOCK<span>.DEV</span></h1>
+            <div>
+                <button
+                    class="draw-border"
+                    type="button"
+                    onclick="location.href = '/projects.html'"
+                >
+                    View my work
+                </button>
+                <button class="draw-border" type="button" onclick="location.href = '/blog.html'">
+                    View my blog
+                </button>
+            </div>
+        </main>
 
-        <div class="buttons" style="padding-bottom: 25%">
-            <button class="button draw-border" type="button" onclick="location.href = '/projects.html'">View my work</button>
-            <button class="button draw-border" type="button" onclick="location.href = '/blog.html'">View my blog</button>
-        </div>
-
-        <footer class="footer">
+        <footer class="content-less">
             <p id="copyright">Copyright © LockBlock-dev</p>
             <p>
                 If you like my content, consider
-                <a style="color: #ffdd00" target="_blank" href="https://ko-fi.com/lockblock">buying me a coffee </a>☕️
+                <a class="ko-fi" target="_blank" href="https://ko-fi.com/lockblock"
+                    >buying me a coffee </a
+                >☕️
             </p>
         </footer>
 
         <script>
-            document.getElementById("copyright").innerHTML = `Copyright © ${new Date().getFullYear()} LockBlock-dev`;
+            document.getElementById(
+                "copyright"
+            ).innerHTML = `Copyright © ${new Date().getFullYear()} LockBlock-dev`;
         </script>
     </body>
 </html>

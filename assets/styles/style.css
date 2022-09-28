@@ -1,0 +1,61 @@
+body {
+    font-family: "Menlo", "Meslo LG", sans-serif;
+    color: #d2d2d2;
+    background-color: #201c1c;
+
+    max-width: 48rem;
+    margin: 0 auto;
+}
+
+.icon {
+    width: 2rem;
+    height: 2rem;
+    filter: invert(100%);
+}
+
+/* global navbar */
+
+nav {
+    margin-top: 2.5rem;
+}
+
+nav a,
+nav a:hover,
+nav a:visited,
+nav a:active {
+    color: inherit;
+    text-decoration: none;
+}
+
+nav ul {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    list-style: none;
+}
+
+nav ul li:first-child {
+    margin-right: auto;
+}
+
+nav ul li {
+    padding-right: 1.5rem;
+}
+
+/* global footer */
+
+footer {
+    text-align: center;
+    color: #9c9b9e;
+}
+
+footer.content-less {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.ko-fi {
+    color: #ffdd00;
+}
