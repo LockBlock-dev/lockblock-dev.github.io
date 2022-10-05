@@ -3,8 +3,12 @@ body {
     color: #d2d2d2;
     background-color: #201c1c;
 
+    height: 100vh;
     max-width: 48rem;
     margin: 0 auto;
+
+    display: flex;
+    flex-direction: column;
 }
 
 .icon {
@@ -49,13 +53,13 @@ footer {
     color: #9c9b9e;
 }
 
-footer.content-less {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-}
-
 .ko-fi {
     color: #ffdd00;
+}
+
+/* allows footer to be at the bottom if no content */
+
+main,
+article {
+    flex-grow: 1;
 }
