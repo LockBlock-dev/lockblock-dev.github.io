@@ -1,0 +1,9 @@
+/* Line numbers in code-blocks make them rounded with an incorrect background color */
+
+.highlight > div {
+    background-color: unset !important;
+}
+
+.highlight pre {
+    background-color: unset !important;
+}

@@ -1,0 +1,31 @@
+baseURL: https://example.org/
+locale: en-us
+title: LockBlock-dev blog
+theme: ["PaperMod"]
+
+enableEmoji: true
+
+markup:
+    goldmark:
+        renderer:
+            unsafe: true
+    highlight:
+        # codeFences: true
+        # guessSyntax: true
+        lineNos: true
+        style: dracula
+
+params:
+    defaultTheme: dark
+
+    homeInfoParams:
+        Title: "Hi there \U0001F44B"
+        Content: Welcome to my blog
+    socialIcons:
+        - name: github
+          url: "https://github.com/LockBlock-dev"
+
+    ShowCodeCopyButtons: true
+
+    assets:
+        disableHLJS: true
