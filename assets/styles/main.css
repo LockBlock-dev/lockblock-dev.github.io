@@ -1,0 +1,70 @@
+/* main page */
+
+main h1 {
+    font-size: 3.5rem;
+}
+
+main {
+    margin-top: 17rem;
+    text-align: center;
+}
+
+main h1 > span {
+    color: #fca311;
+    font-style: italic;
+    display: inline-block;
+}
+
+/* buttons border animation */
+
+button.draw-border {
+    font-size: 1.25rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 1em 2em;
+}
+
+.draw-border {
+    color: inherit;
+    transition: color 0.25s 0.08s;
+    position: relative;
+}
+
+.draw-border::before,
+.draw-border::after {
+    border: 0 solid transparent;
+    box-sizing: border-box;
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+    bottom: 0;
+    right: 0;
+}
+
+.draw-border::before {
+    border-bottom-width: 0.25rem;
+    border-left-width: 0.25rem;
+}
+
+.draw-border::after {
+    border-top-width: 0.25rem;
+    border-right-width: 0.25rem;
+}
+
+.draw-border:hover::before,
+.draw-border:hover::after {
+    border-color: #fca311;
+    transition: border-color 0s, width 0.25s, height 0.25s;
+    width: 100%;
+    height: 100%;
+}
+
+.draw-border:hover::before {
+    transition-delay: 0s, 0s, 0.25s;
+}
+
+.draw-border:hover::after {
+    transition-delay: 0s, 0.25s, 0s;
+}
