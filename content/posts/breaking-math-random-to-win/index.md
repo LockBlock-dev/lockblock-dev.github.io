@@ -1,8 +1,10 @@
 ---
 date: "2025-03-03"
+lastmod: "2026-07-15"
 title: "Breaking Math.Random to win"
 tags: ["JavaScript"]
 ShowReadingTime: true
+ShowTOC: true
 ---
 
 I was talking with [MasterIO](https://github.com/MasterIO02) about Yuna, the Discord bot of [o!rdr](https://ordr.issou.best/), when I said that I could win big money.
@@ -113,3 +115,43 @@ Of course, the better lesson is to not use `Math.random()` for anything that beh
 - I used rolls to know when `y!bet` would win
 - I won fake money
 - MasterIO fixed it by capping `y!roll`
+
+---
+
+## Update, July 2026
+
+My friend [Freakish](https://github.com/SomeRandom-Dev) and I were not ready to let this go. The `1,000,000` cap was supposed to be the fix. We wanted to know: was it actually enough?
+
+The thing about capping the roll is that it sounds like it kills the attack. And it does, if you are using the original predictor. The problem is that `1,000,000` still leaks roughly 20 bits of entropy per roll. That is way less than the 52 bits you get from a raw `Math.random()` float, but it is not zero. Stack enough of those 20-bit leaks together and you can still reconstruct the internal state. You just need a smarter tool.
+
+## The AI revolution, sort of
+
+Being in the middle of the AI revolution, we did what anyone would do: we asked some LLMs for help. We fed them the problem and asked them to reimagine [PwnFunction/v8-randomness-predictor](https://github.com/PwnFunction/v8-randomness-predictor) to work with less precise inputs. Specifically, could it predict the next numbers from a sequence of integers in the 1-to-1,000,000 range instead of near-exact floats?
+
+The LLMs gave us a starting point. A working, functional, horribly slow starting point.
+
+## How it actually works under the hood
+
+Remember `xorshift128+`? Same engine as before, same 128-bit state hiding behind `Math.random()`. V8 generates numbers in batches of 64 and serves them backwards, so the first number you see is actually the last one that was computed. All of that still applies.
+
+The difference is precision. The original predictor worked because big rolls leaked most of the 52-bit float. With a cap of `1,000,000`, you only get about 20 bits per observation. That is like trying to solve a jigsaw puzzle where each piece only shows a tiny corner of the picture.
+
+So we modeled the whole thing in Z3 again, but this time with inequality bounds instead of exact values. Each roll of $r$ tells us the original float fell somewhere in a range:
+
+$$\text{lower} = \frac{(r - 1) \cdot 2^{52}}{1{,}000{,}000} \le \text{mantissa} < \frac{r \cdot 2^{52}}{1{,}000{,}000} = \text{upper}$$
+
+That is a lot less information per roll, but Z3 can still work with it. You just need more observations and a smarter search.
+
+The other problem was figuring out where in V8's cache we started listening. Since the batch of 64 values can be partially consumed when you begin observing, we simulate two full batches (128 states) and slide through all possible offsets $k$ (from 0 to 63) until the cache boundary clicks into place.
+
+## Freakish did the hard work
+
+The first version worked. It was also so slow that you could go make coffee between rolls. Freakish then spent an unreasonable amount of time optimizing it until it was fast enough to use in practice. The kind of fast where you can predict, roll to advance the stream, and place a bet before anyone notices what happened.
+
+So we did exactly that.
+
+![Casino Royale](img/casino_royale.png#center)
+
+The `1,000,000` cap slows the attack down, but it does not kill it. As long as `Math.random()` is the source and you can observe enough outputs, the internal state is recoverable.
+
+Of course, the real lesson has not changed: do not use `Math.random()` for anything that looks like gambling or money, even if the money is fake. A capped leak is still a leak.
